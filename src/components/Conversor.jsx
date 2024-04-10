@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../styles/conversor.css'
 import { Link } from 'react-router-dom';
 
-const _URL_POST = 'http://localhost:3000/api/shortUrl';
+const _URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 export const Conversor = () => {
 
@@ -18,7 +18,7 @@ export const Conversor = () => {
                 full
             };
 
-            fetch(_URL_POST, {
+            fetch(`${_URL}/api/shortUrl`, {
                 method: 'POST',
                 body: JSON.stringify(urlFull),
                 headers: {
@@ -58,7 +58,7 @@ export const Conversor = () => {
             {ultimaUrl &&
                 <div className='ultimaUrl'>
                     <h5>Url generada.</h5>
-                    <Link target='_blank' to={`http://localhost:3000/api/search/${ultimaUrl.short}`}>{ultimaUrl.short}</Link>                    
+                    <Link target='_blank' to={`${_URL}/api/search/${ultimaUrl.short}`}>{ultimaUrl.short}</Link>                    
                 </div>
             }
         </>

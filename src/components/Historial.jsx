@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
 
-const _URL_GET_All = 'http://localhost:3000/api/historial';
+const _URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 export const Historial = () => {
 
-    const { data, error, loading } = useFetch(_URL_GET_All);
+    const { data, error, loading } = useFetch(`${_URL}/api/historial`);
 
     return (
         <>
@@ -29,7 +29,7 @@ export const Historial = () => {
                                 return (
                                     <tr key={url.id}>
                                         <td>{url.full}</td>
-                                        <td><Link target='_blank' to={`http://localhost:3000/api/search/${url.short}`}>{url.short}</Link></td>
+                                        <td><Link target='_blank' to={`${_URL}/api/search/${url.short}`}>{url.short}</Link></td>
                                         <td>{url.clicks}</td>
                                     </tr>
                                 )
